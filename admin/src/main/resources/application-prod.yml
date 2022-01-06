@@ -1,0 +1,141 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /prod
+logging:
+  level:
+    root: info
+    cn.bug: debug
+
+enviroment: prod
+
+
+spring:
+  mvc:
+    static-path-pattern: /static/**
+  thymeleaf:
+    cache: false
+  # 数据源配置
+  datasource:
+    oracledb-parent: # 数据源1
+      driver-class-name: oracle.jdbc.OracleDriver
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开 PSCache，并且指定每个连接上 PSCache 的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 配置监控统计拦截的 Filter，去掉后监控界面 SQL 无法统计，wall 用于防火墙
+      filters: stat,wall,slf4j
+      # 通过 connection-properties 属性打开 mergeSql 功能；慢 SQL 记录
+      connection-properties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
+    sqldb-parent: # 数据源1
+      driver-class-name: net.sourceforge.jtds.jdbc.Driver
+      #      url: jdbc:jtds:sqlserver://172.16.1.253/JSDerik_erp_dta
+      #      username: sa
+      #      password: JSDerik@2019
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开 PSCache，并且指定每个连接上 PSCache 的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 配置监控统计拦截的 Filter，去掉后监控界面 SQL 无法统计，wall 用于防火墙
+      filters: stat,wall,slf4j
+      # 通过 connection-properties 属性打开 mergeSql 功能；慢 SQL 记录
+      connection-properties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
+    erpdta:
+      url: jdbc:jtds:sqlserver://172.16.1.253/JSDerik_erp_dta
+      username: sa
+      password: JSDerik@2019
+    bae-db:
+      #      url: jdbc:jtds:sqlserver://172.16.3.197/derik_bae_mes_dta
+      #      url: jdbc:jtds:sqlserver://172.16.1.233/derik_baa_mes_dta
+      url: jdbc:jtds:sqlserver://172.16.2.11/derik_baf_mes_dta
+      username: sa
+      password: 123.com
+    mes-api-db:
+      url: jdbc:jtds:sqlserver://172.16.1.233/Derik_MES_API
+      username: sa
+      password: 123.com
+    qms-db:
+      url: jdbc:oracle:thin:@172.16.2.35:1521:DERIKMESDB
+      username: MP00101
+      password: MP00101
+
+    type: com.alibaba.druid.pool.DruidDataSource
+    # MYSQL 5 驱动：com.mysql.jdbc.Driver，MYSQL 6+ 驱动：com.mysql.cj.jdbc.Driver
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    druid:
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM dual
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开 PSCache，并且指定每个连接上 PSCache 的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 配置监控统计拦截的 Filter，去掉后监控界面 SQL 无法统计，wall 用于防火墙
+      filters: stat,wall,slf4j
+      # 通过 connection-properties 属性打开 mergeSql 功能；慢 SQL 记录
+      connection-properties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
+      # 配置 DruidStatFilter
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: .js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*
+      # 配置 DruidStatViewServlet
+      stat-view-servlet:
+        url-pattern: /druid/*
+        # IP 白名单，没有配置或者为空，则允许所有访问
+        #        allow: 127.0.0.1
+        # IP 黑名单，若白名单也存在，则优先使用
+        #        deny: 192.168.31.253
+        # 禁用 HTML 中 Reset All 按钮
+        reset-enable: false
+        # 登录用户名/密码
+        login-username: root
+        login-password: 123
+        enabled: true
+
+mybatis-plus:
+  #  type-aliases-package: cn.bug.springdemo01
+  #  mapper-locations: mapper/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+#  global-config:
+#    db-config:
+#      logic-delete-field: flag
+
