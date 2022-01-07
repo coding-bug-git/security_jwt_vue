@@ -61,7 +61,7 @@ public class SecurityJwtVueDBConfig {
         configuration.setJdbcTypeForNull(JdbcType.NULL);
         factoryBean.setConfiguration(configuration);
         configuration.setMapUnderscoreToCamelCase(true);//开启下划线转驼峰
-        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/security_jwt_vue/**/*.xml"));
+        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:/mapper/security_jwt_vue/**/*.xml"));
         // factoryBean.setPlugins(new Interceptor[]{
         //         new PaginationInterceptor(),
         //         new PerformanceInterceptor()

@@ -9,7 +9,6 @@ logging:
 
 enviroment: dev
 
-
 spring:
   mvc:
     static-path-pattern: /static/**
@@ -154,6 +153,10 @@ spring:
         login-username: root
         login-password: 123
         enabled: true
+  security:
+    user:
+      name: user
+      password: 111111
 
 mybatis-plus:
   #  type-aliases-package: cn.bug.springdemo01
