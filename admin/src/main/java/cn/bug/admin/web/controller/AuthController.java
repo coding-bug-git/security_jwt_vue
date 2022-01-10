@@ -7,6 +7,8 @@ import cn.hutool.core.lang.UUID;
 import cn.hutool.core.map.MapUtil;
 import com.google.code.kaptcha.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -20,10 +22,12 @@ import java.util.HashMap;
  * @description
  * @createDate 2022-01-04 13:10
  */
+@RestController
 public class AuthController extends BaseController {
     @Autowired
     Producer kaptchaProducer;
-    
+
+    @GetMapping("/captcha")
     public AjaxResult captcha() throws IOException {
         String token = UUID.randomUUID().toString();
         String code = kaptchaProducer.createText();

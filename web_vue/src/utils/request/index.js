@@ -4,6 +4,7 @@ import { ElMessage } from 'element-plus'
 
 const request = axios.create({
   timeout: 5000,
+  baseURL: process.env.VUE_APP_BASE_API,
   headers: {
     'Content-Type': 'application/json;charset=utf-8'
   }
@@ -24,6 +25,7 @@ request.interceptors.response.use((response) => {
   if (response.config.responseType === 'blob') {
     return res
   }
+  console.log(response.data)
   if (typeof res === 'string') {
     res = res ? JSON.parse(res) : res
   }
@@ -44,5 +46,5 @@ request.interceptors.response.use((response) => {
   ElMessage.error({ message: error.message, duration: 3000 })
   return Promise.reject(error)
 })
-request.defaults.baseURL = process.env.VUE_APP_BASE_API
+
 export default request

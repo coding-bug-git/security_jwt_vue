@@ -2,7 +2,7 @@
   <el-row class="row-bg" justify="center" type="flex">
     <el-col :sm="6" :lg="7">
       <h2>欢迎来到VueAdmin管理系统</h2>
-      <el-image style="height: 180px" :src="require('@/assets/barCode.jpg')"></el-image>
+      <el-image style="height: 180px;width: 180px;" :src="require('@/assets/barCode.jpg')"></el-image>
       <p>coding-bug</p>
     </el-col>
     <el-col :span="1">
@@ -52,6 +52,7 @@ import request from '@/utils/request'
 // More info see https://github.com/element-plus/element-plus/blob/dev/docs/examples/form/utils.ts
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+
 export default {
   name: 'Login',
   setup() {
@@ -138,6 +139,9 @@ export default {
     const captchaImg = ref()
     onMounted(() => {
       getCaptcha()
+      request.get('/test3', {
+        params: { a: 1 }
+      }).then(res => console.log(res))
     })
 
     const doLogin = () => {
@@ -151,7 +155,7 @@ export default {
         .then(res => {
           console.log(res)
           loginForm.token = res.data.token
-          captchaImg.value = res.data.captcha
+          captchaImg.value = res.data.captchaImg
         })
     }
 

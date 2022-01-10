@@ -1,115 +1,28 @@
 package cn.bug.common.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Locale;
 
 /**
- * Entity基类
- *
- * @author ruoyi
+ * @author coding-bug
+ * @description
+ * @createDate 2022-01-04 10:23
  */
-public class BaseEntity implements Serializable
-{
-    private static final long serialVersionUID = 1L;
+@Data
+public class BaseEntity implements Serializable {
+    @TableId(value = "id",type = IdType.AUTO)
+    private Long id;
 
-    /** 搜索值 */
-    private String searchValue;
+    private LocalDateTime created;
 
-    /** 创建者 */
-    private String createBy;
+    private LocalDateTime updated;
 
-    /** 创建时间 */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
+    private  Integer statu;
 
-    /** 更新者 */
-    private String updateBy;
-
-    /** 更新时间 */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date updateTime;
-
-    /** 备注 */
-    private String remark;
-
-    /** 请求参数 */
-    private Map<String, Object> params;
-
-    public String getSearchValue()
-    {
-        return searchValue;
-    }
-
-    public void setSearchValue(String searchValue)
-    {
-        this.searchValue = searchValue;
-    }
-
-    public String getCreateBy()
-    {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy)
-    {
-        this.createBy = createBy;
-    }
-
-    public Date getCreateTime()
-    {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime)
-    {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateBy()
-    {
-        return updateBy;
-    }
-
-    public void setUpdateBy(String updateBy)
-    {
-        this.updateBy = updateBy;
-    }
-
-    public Date getUpdateTime()
-    {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime)
-    {
-        this.updateTime = updateTime;
-    }
-
-    public String getRemark()
-    {
-        return remark;
-    }
-
-    public void setRemark(String remark)
-    {
-        this.remark = remark;
-    }
-
-    public Map<String, Object> getParams()
-    {
-        if (params == null)
-        {
-            params = new HashMap<>();
-        }
-        return params;
-    }
-
-    public void setParams(Map<String, Object> params)
-    {
-        this.params = params;
-    }
 }
