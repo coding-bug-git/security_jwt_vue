@@ -17,12 +17,20 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+
 
         <!-- Spring框架基本的核心工具 -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-        </dependency>
+        <!-- <dependency> -->
+        <!--     <groupId>org.springframework</groupId> -->
+        <!--     <artifactId>spring-context-support</artifactId> -->
+        <!-- </dependency> -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -149,6 +157,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

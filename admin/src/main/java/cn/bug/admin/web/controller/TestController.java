@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class TestController extends BaseController {
-
     @Autowired
     private SysUserService sysUserService;
 
