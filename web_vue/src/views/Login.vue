@@ -34,10 +34,10 @@
 
         <el-form-item>
           <el-button type="primary" @click="submitForm(loginFormRef,doLogin)"
-          >Create
+          >登录
           </el-button
           >
-          <el-button @click="resetForm(loginFormRef)">Reset</el-button>
+          <el-button @click="resetForm(loginFormRef)">重置</el-button>
         </el-form-item>
       </el-form>
     </el-col>
@@ -46,7 +46,7 @@
 
 <script>
 
-import { onMounted, reactive, ref } from 'vue'
+import { on, reactive, ref } from 'vue'
 import FormValidate from '@/utils/formValidate'
 import request from '@/utils/request'
 // More info see https://github.com/element-plus/element-plus/blob/dev/docs/examples/form/utils.ts
@@ -95,54 +95,15 @@ export default {
           message: '请输入验证码',
           trigger: 'blur'
         }
-      ],
-      date1: [
-        {
-          type: 'date',
-          required: true,
-          message: 'Please pick a date',
-          trigger: 'change'
-        }
-      ],
-      date2: [
-        {
-          type: 'date',
-          required: true,
-          message: 'Please pick a time',
-          trigger: 'change'
-        }
-      ],
-      type: [
-        {
-          type: 'array',
-          required: true,
-          message: 'Please select at least one activity type',
-          trigger: 'change'
-        }
-      ],
-      resource: [
-        {
-          required: true,
-          message: 'Please select activity resource',
-          trigger: 'change'
-        }
-      ],
-      desc: [
-        {
-          required: true,
-          message: 'Please input activity form',
-          trigger: 'blur'
-        }
       ]
     })
 
     const captchaImg = ref()
-    onMounted(() => {
-      getCaptcha()
-      request.get('/test3', {
-        params: { a: 1 }
-      }).then(res => console.log(res))
-    })
+
+    getCaptcha()
+    request.get('/test3', {
+      params: { a: 1 }
+    }).then(res => console.log(res))
 
     const doLogin = () => {
       request.post('/login', loginForm).then(res => {
