@@ -1,5 +1,6 @@
 package cn.bug.admin.web.controller;
 
+import cn.bug.common.controller.BaseController;
 import cn.bug.generator.security_jwt_vue.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @createDate 2022-01-04 22:49
  */
 @RestController
-public class TestController {
+public class TestController extends BaseController {
 
     @Autowired
     private SysUserService sysUserService;
@@ -24,7 +25,7 @@ public class TestController {
 
     @GetMapping("/test2")
     public Object test2() {
-        return sysUserService.list();
+        return request.getRequestURI();
     }
 
     @GetMapping("/test3")

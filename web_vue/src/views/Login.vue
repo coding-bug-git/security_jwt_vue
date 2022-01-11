@@ -28,7 +28,9 @@
             <el-input v-model="loginForm.captcha"></el-input>
           </el-col>
           <el-col :span="12" style="display: flex;align-items: center;">
-            <el-image class="captcha" :src="captchaImg"/>
+            <el-image class="captcha" :src="captchaImg"
+                      @click="getCaptcha"
+            />
           </el-col>
         </el-form-item>
 
@@ -46,12 +48,13 @@
 
 <script>
 
-import { on, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 import FormValidate from '@/utils/formValidate'
 import request from '@/utils/request'
 // More info see https://github.com/element-plus/element-plus/blob/dev/docs/examples/form/utils.ts
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import qs from 'qs'
 
 export default {
   name: 'Login',
@@ -66,12 +69,7 @@ export default {
       username: '',
       password: '',
       captcha: '',
-      token: '',
-      date2: '',
-      delivery: false,
-      type: [],
-      resource: '',
-      desc: ''
+      token: ''
     })
     const rules = reactive({
       username: [
@@ -101,12 +99,8 @@ export default {
     const captchaImg = ref()
 
     getCaptcha()
-    request.get('/test3', {
-      params: { a: 1 }
-    }).then(res => console.log(res))
-
     const doLogin = () => {
-      request.post('/login', loginForm).then(res => {
+      request.post('/login?' + qs.stringify(loginForm)).then(res => {
         console.log(res)
       })
     }
@@ -127,6 +121,7 @@ export default {
       rules,
       captchaImg,
       doLogin,
+      getCaptcha,
       ...FormValidate
     }
   }
@@ -138,6 +133,8 @@ export default {
 .captcha {
   margin-left: 8px;
   border-radius: 4px;
+  height: 40px;
+  width: 110px;
 }
 
 .el-divider {

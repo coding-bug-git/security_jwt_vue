@@ -1,6 +1,6 @@
 package cn.bug.common.controller;
 
-import cn.bug.common.core.redis.RedisCache;
+import cn.bug.common.core.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 public class BaseController {
     @Autowired
     protected HttpServletRequest request;
-    
-    
+
+
     @Autowired
-    protected RedisCache redisCache;
+    protected RedisUtil redisUtil;
 }

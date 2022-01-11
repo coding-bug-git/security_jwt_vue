@@ -30,15 +30,15 @@ public class AuthController extends BaseController {
     @GetMapping("/captcha")
     public AjaxResult captcha() throws IOException {
         String token = UUID.randomUUID().toString();
-        String code = kaptchaProducer.createText();
-        BufferedImage image = kaptchaProducer.createImage(code);
+        String captcha = kaptchaProducer.createText();
+        BufferedImage image = kaptchaProducer.createImage(captcha);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ImageIO.write(image, "jpg", outputStream);
         String encode = Base64Encoder.encode(outputStream.toByteArray());
-        
+        request.getMethod();
         String str = "data:image/jpeg;base64,";
         String base64Img = str + encode;
-        redisCache.setCacheMap("captcha", token, code, 120);
+        redisUtil.hset(token,"captcha", captcha, 120);
         return AjaxResult.success(
                 MapUtil.builder()
                         .put("token", token)
