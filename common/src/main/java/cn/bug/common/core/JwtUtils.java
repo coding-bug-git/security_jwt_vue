@@ -35,10 +35,16 @@ public class JwtUtils {
     }
 
     public Claims parseToken(String jwt) {
-        return Jwts.parser()
-                .setSigningKey(secret)
-                .parseClaimsJws(jwt)
-                .getBody();
+        try {
+
+
+            return Jwts.parser()
+                    .setSigningKey(secret)
+                    .parseClaimsJws(jwt)
+                    .getBody();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public boolean isExpired(Claims claims) {
