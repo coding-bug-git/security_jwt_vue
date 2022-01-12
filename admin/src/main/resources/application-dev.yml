@@ -168,9 +168,9 @@ spring:
         login-password: 123
         enabled: true
   security:
-    user:
-      name: admin
-      password: 1234
+#    user:
+#      name: admin
+#      password: 1234
 
 mybatis-plus:
   #  type-aliases-package: cn.bug.springdemo01

@@ -36,8 +36,6 @@ public class JwtUtils {
 
     public Claims parseToken(String jwt) {
         try {
-
-
             return Jwts.parser()
                     .setSigningKey(secret)
                     .parseClaimsJws(jwt)

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,8 +20,7 @@ import lombok.Setter;
  * @author coding-bug
  * @since 2022-01-10 10:39:50
  */
-@Getter
-@Setter
+@Data
 @TableName("sys_user")
 @ApiModel(value = "SysUser对象", description = "")
 public class SysUser extends BaseEntity {

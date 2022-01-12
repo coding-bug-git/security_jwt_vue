@@ -5,7 +5,6 @@ import cn.bug.common.core.redis.RedisUtil;
 import cn.hutool.core.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -34,8 +33,6 @@ public class CaptchaFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain filterChain) throws ServletException, IOException {
-
-
         String url = req.getRequestURI();
         if ((contextPath + "/login").equals(url) && req.getMethod().equalsIgnoreCase("POST")) {
             try {
@@ -53,7 +50,7 @@ public class CaptchaFilter extends OncePerRequestFilter {
         if (StrUtil.isBlank(captcha) || StrUtil.isBlank(token)) {
             throw new CaptchaException("验证码错误");
         }
-        String captcha1 =String.valueOf( redisUtil.hget(token, "captcha"));
+
         if (!captcha.equals(redisUtil.hget(token, "captcha"))) {
             throw new CaptchaException("验证码错误");
         }
