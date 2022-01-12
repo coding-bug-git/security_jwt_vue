@@ -1,6 +1,8 @@
 <template>
   <el-config-provider :locale="locale">
-    <router-view/>
+    <suspense>
+      <router-view/>
+    </suspense>
   </el-config-provider>
 
 </template>
