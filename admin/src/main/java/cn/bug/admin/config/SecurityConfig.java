@@ -39,6 +39,14 @@ import java.nio.charset.StandardCharsets;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] URL_WHITE_LIST = {
+            "/",
+            "/index",
+            "/swagger-ui.html",
+            "/swagger-ui/*",
+            "/swagger-resources/**",
+            "/v2/api-docs",
+            "/v3/api-docs",
+            "/webjars/**",
             "/login",
             "/logout",
             "/captcha",
