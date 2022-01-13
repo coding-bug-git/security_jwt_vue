@@ -2,7 +2,6 @@ package cn.bug.admin.security;
 
 import cn.bug.common.core.JwtUtils;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.jwt.JWTException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;

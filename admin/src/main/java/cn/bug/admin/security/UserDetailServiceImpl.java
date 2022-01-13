@@ -1,15 +1,12 @@
 package cn.bug.admin.security;
 
-import cn.bug.generator.security_jwt_vue.domain.SysMenu;
 import cn.bug.generator.security_jwt_vue.domain.SysRole;
 import cn.bug.generator.security_jwt_vue.domain.SysUser;
-import cn.bug.generator.security_jwt_vue.domain.SysUserRole;
 import cn.bug.generator.security_jwt_vue.service.SysMenuService;
 import cn.bug.generator.security_jwt_vue.service.SysRoleService;
 import cn.bug.generator.security_jwt_vue.service.SysUserRoleService;
 import cn.bug.generator.security_jwt_vue.service.SysUserService;
 import cn.hutool.core.collection.CollectionUtil;
-import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
